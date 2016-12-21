@@ -26,7 +26,7 @@ public class ClientController {
 
         @RequestMapping("/")
         String test(Model model){
-            model.addAttribute("name", "Dev");
+
             List<Client> list = service.getAllClient();
             Container containerList = new Container();
             containerList.setList(list);
