@@ -11,11 +11,59 @@
 <html>
 <head>
     <title>itNavigator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        function tableToJSON(){
+            var container = new Object();
+            container.list = [];
+            var list;
+            console.log(document.getElementById("list0.fio").value);
+            for(i = 0; i <3; i++) {
+                var client = {"idClient": document.getElementById("list"+i+".idClient").value,
+                "telefone": {"idTelefone": document.getElementById("list"+i+".telefone.idTelefone").value
+                    , "number": document.getElementById("list"+i+".telefone.number").value
+                    , "type": document.getElementById("list"+i+".telefone.type").value
+                    , "comment": document.getElementById("list"+i+".telefone.comment").value
+                    }, "fio": document.getElementById("list"+i+".fio").value
+                };
+
+                container.list.push(client);
+
+            }
+            console.log(JSON.stringify(container));
+            return JSON.stringify(container);
+        };
+
+
+        function searchAjax() {
+            // Convert the table into a javascript object
+            console.log(table);
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "updateAll",
+                data : tableToJSON(),
+                //dataType : 'json',
+                timeout : 100000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+
+                },
+                done : function(e) {
+
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-<table>
+<table id="table">
     <thead>
-    <form:form method="POST" commandName="container" action="update">
+    <form:form method="POST" commandName="container" action="update"  onsubmit="return false">
     <tr>
         <th>FIO</th>
         <th>Number</th>
@@ -55,7 +103,7 @@
         </tr>
     </c:forEach>
 </table>
-<input type="submit" value="Update" class="btn btn-lg btn-success">
+<input type="submit" value="Update" class="btn btn-lg btn-success" onclick="searchAjax()">
 </form:form>
 </body>
 </html>

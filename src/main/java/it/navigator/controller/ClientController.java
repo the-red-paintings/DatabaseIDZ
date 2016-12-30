@@ -8,11 +8,8 @@ import it.navigator.service.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -41,12 +38,16 @@ public class ClientController {
         service.updateAll(list);
         return "redirect:/";
     }
-    @RequestMapping("/updateAll")
+    @RequestMapping(value = "/updateAll", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    List<Client> updateAll(@ModelAttribute Container container){
-        List<Client> list =container.getList();
+    Container updateAll(@RequestBody Container container){
+        List<Client> list = container.getList();
         service.updateAll(list);
-        return list;
+
+        Container container1 = new Container();
+        container1.setList(service.getAllClient());
+
+        return container1 ;
     }
 
 }

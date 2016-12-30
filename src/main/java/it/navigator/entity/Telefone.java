@@ -1,11 +1,14 @@
 package it.navigator.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
  * Created by the-red-paintings on 13.12.2016.
  */
 @Entity
+@JsonIgnoreProperties({"client"})
 @Table(name = "Telefone", schema = "itNavigator")
 public class Telefone {
     @Id
@@ -21,6 +24,7 @@ public class Telefone {
     @Basic
     @Column(name = "comment")
     private String comment;
+
     @OneToOne(mappedBy = "telefone")
     private Client client;
 
