@@ -1,9 +1,7 @@
 package it.navigator.service;
 
 import it.navigator.dao.ClientDAO;
-import it.navigator.dao.ClientDAOImpl;
 import it.navigator.entity.Client;
-import it.navigator.entity.ClientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

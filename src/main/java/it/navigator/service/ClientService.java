@@ -1,7 +1,6 @@
 package it.navigator.service;
 
 import it.navigator.entity.Client;
-import it.navigator.entity.ClientEntity;
 
 import java.util.List;
 
