@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: the-red-paintings
-  Date: 22.01.2017
-  Time: 22:37
+  Date: 02.02.2017
+  Time: 23:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,13 +13,11 @@
     <title>Title</title>
 </head>
 <body>
-    <p>${autor.fio}</p>
-    <c:if test="${not empty autor.articles}">
-        <c:forEach var="article" items="${autor.articles}">
-            <a href="/article/${article.id}">${article.name}</a>
-        </c:forEach>
-    </c:if>
-    <a href="/autor/edit/${autor.id}">Edit</a>
-    <a href="/autor/new">new</a>
+<form:form action="/reviewer/add" commandName="reviewer" method="post">
+    <p>
+    <form:input path="fio" placeholder="fio"></form:input>
+    </p>
+    <button type="submit">Add</button>
+</form:form>
 </body>
 </html>

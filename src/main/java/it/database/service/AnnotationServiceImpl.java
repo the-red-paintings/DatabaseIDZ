@@ -1,7 +1,7 @@
 package it.database.service;
 
-import it.database.dao.ArticleDAO;
-import it.database.entity.Article;
+import it.database.dao.AnnotationDAO;
+import it.database.entity.Annotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,31 +9,34 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by the-red-paintings on 22.01.2017.
+ * Created by the-red-paintings on 29.01.2017.
  */
-@Service("service")
+@Service
 @Transactional
-public class ArticleServiceImpl implements ArticleService {
+public class AnnotationServiceImpl implements AnnotationService {
     @Autowired
-    ArticleDAO dao;
+    AnnotationDAO dao;
     @Override
-    public List<Article> getAll() {
+    public List<Annotation> getAll() {
         return dao.getAll();
     }
     @Override
-    public int save(Article article){return dao.save(article);}
-    @Override
-    public void update(Article article) {
-        dao.update(article);
+    public int save(Annotation annotation){
+        return dao.save(annotation);
     }
 
     @Override
-    public void updateAll(List<Article> list) {
+    public void update(Annotation annotation) {
+        dao.update(annotation);
+    }
+
+    @Override
+    public void updateAll(List<Annotation> list) {
         dao.updateAll(list);
     }
 
     @Override
-    public Article getById(int id) {
+    public Annotation getById(int id) {
         return dao.getById(id);
     }
 
@@ -43,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete(Article type) {
+    public void delete(Annotation type) {
         dao.delete(type);
     }
 }

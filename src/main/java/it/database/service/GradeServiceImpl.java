@@ -1,7 +1,7 @@
 package it.database.service;
 
-import it.database.dao.ArticleDAO;
-import it.database.entity.Article;
+import it.database.dao.GradeDAO;
+import it.database.entity.Grade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,31 +9,31 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by the-red-paintings on 22.01.2017.
+ * Created by the-red-paintings on 29.01.2017.
  */
-@Service("service")
+@Service
 @Transactional
-public class ArticleServiceImpl implements ArticleService {
+public class GradeServiceImpl implements GradeService {
     @Autowired
-    ArticleDAO dao;
+    GradeDAO dao;
     @Override
-    public List<Article> getAll() {
+    public List<Grade> getAll() {
         return dao.getAll();
     }
     @Override
-    public int save(Article article){return dao.save(article);}
+    public int save(Grade grade){return dao.save(grade);}
     @Override
-    public void update(Article article) {
-        dao.update(article);
+    public void update(Grade grade) {
+        dao.update(grade);
     }
 
     @Override
-    public void updateAll(List<Article> list) {
+    public void updateAll(List<Grade> list) {
         dao.updateAll(list);
     }
 
     @Override
-    public Article getById(int id) {
+    public Grade getById(int id) {
         return dao.getById(id);
     }
 
@@ -43,7 +43,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete(Article type) {
+    public void delete(Grade type) {
         dao.delete(type);
     }
 }

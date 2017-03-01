@@ -11,9 +11,12 @@ import java.util.List;
  * Created by the-red-paintings on 22.01.2017.
  */
 @Service
+
 public interface ArticleService {
 
     public List<Article> getAll();
+
+    int save(Article article);
 
     public void update(Article article);
 

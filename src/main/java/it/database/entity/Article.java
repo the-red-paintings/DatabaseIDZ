@@ -1,5 +1,11 @@
 package it.database.entity;
 
+import com.sun.scenario.effect.Merge;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +13,7 @@ import java.util.List;
  * Created by the-red-paintings on 22.01.2017.
  */
 @Entity
-@Table(name = "Article", schema = "mydb")
+@Table(name = "Article", schema = "mydb2")
 public class Article extends AbstractEntity {
     @Column
     String language;
@@ -15,17 +21,23 @@ public class Article extends AbstractEntity {
     String name;
     @Column
     String text;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+    @OneToMany
+    @JoinColumn(name = "Article_id")
     List<Keywords> keywords;
-    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "articles",cascade = CascadeType.ALL)
+    @ManyToMany()
+    @JoinTable(name="Autor_has_Article", joinColumns=@JoinColumn(name="Article_id",updatable = true), inverseJoinColumns=@JoinColumn(name="Autor_id",updatable = true))
     List<Autor> autors;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL  , mappedBy = "article" )
+    @OneToMany
+    @JoinColumn(name = "Article_id")
     List<Grade> grades;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+    @OneToMany
+    @JoinColumn(name = "Article_id")
     List<Annotation> annotations;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+    @OneToMany
+    @JoinColumn(name = "Article_id")
     List<Raport> raports;
-    @ManyToMany(mappedBy = "articles")
+    @ManyToMany()
+    @JoinTable(name="Raport", joinColumns=@JoinColumn(name="Article_id"), inverseJoinColumns=@JoinColumn(name="idReviewer"))
     List<Reviewer> reviewers;
 
     @Override

@@ -6,16 +6,36 @@ import javax.persistence.*;
  * Created by the-red-paintings on 22.01.2017.
  */
 @Entity
-@Table(name = "Grade", schema = "mydb")
+@Table(name = "Grade", schema = "mydb2")
 public class Grade extends AbstractEntity {
     @Column
     int mark;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idReviewer", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idReviewer")
     Reviewer reviewer;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Article_id", nullable = false, updatable = false)
+    @ManyToOne()
+    @JoinColumn(name = "Article_id", nullable = false, updatable = true, referencedColumnName = "id")
     Article article;
+
+    transient Integer articleId;
+
+    transient Integer reviewerId;
+
+    public Integer getReviewerId() {
+        return reviewerId;
+    }
+
+    public void setReviewerId(Integer reviewerId) {
+        this.reviewerId = reviewerId;
+    }
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
 
     public Article getArticle() {
         return article;

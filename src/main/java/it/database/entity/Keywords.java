@@ -6,15 +6,25 @@ import javax.persistence.*;
  * Created by the-red-paintings on 22.01.2017.
  */
 @Entity
-@Table(name = "Keywords", schema = "mydb")
+@Table(name = "Keywords", schema = "mydb2")
 public class Keywords extends AbstractEntity {
     @Column
     String language;
     @Column
     String word;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Article_id", nullable = false)
+    @ManyToOne(  cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE})
+    @JoinColumn(name = "Article_id", nullable = true)
     Article article;
+
+    transient Integer articleId;
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
 
     public Article getArticle() {
         return article;

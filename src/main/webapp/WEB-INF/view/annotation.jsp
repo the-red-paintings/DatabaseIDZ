@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: the-red-paintings
-  Date: 22.01.2017
-  Time: 22:37
+  Date: 29.01.2017
+  Time: 21:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,13 +13,12 @@
     <title>Title</title>
 </head>
 <body>
-    <p>${autor.fio}</p>
-    <c:if test="${not empty autor.articles}">
-        <c:forEach var="article" items="${autor.articles}">
-            <a href="/article/${article.id}">${article.name}</a>
-        </c:forEach>
+    <p>${annotation.language}</p>
+    <p>${annotation.text}</p>
+    <c:if test="${not empty annotation.article}">
+        <a href="/article/${annotation.article.id}" >${annotation.article.name}</a>
     </c:if>
-    <a href="/autor/edit/${autor.id}">Edit</a>
-    <a href="/autor/new">new</a>
+    <a href="/annotation/edit/${annotation.id}">edit</a>
+    <a href="/annotation/new">new</a>
 </body>
 </html>

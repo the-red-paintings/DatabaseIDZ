@@ -22,7 +22,10 @@ public abstract class GenericDAOImpl<T extends AbstractEntity> implements Generi
         ParameterizedType pt = (ParameterizedType) t;
         type = (Class) pt.getActualTypeArguments()[0];
     }
-
+    @Override
+    public int save(T type){
+        return (int) sessionFactory.getCurrentSession().save(type);
+    }
 
     @Override
     public List<T> getAll() {

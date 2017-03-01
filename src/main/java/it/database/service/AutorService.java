@@ -10,6 +10,8 @@ import java.util.List;
 public interface AutorService {
     public List<Autor> getAll();
 
+    int save(Autor autor);
+
     public void update(Autor autor);
 
     public void updateAll(List<Autor> list);
@@ -19,4 +21,5 @@ public interface AutorService {
     public void deleteById(int id);
 
     public void delete(Autor type);
+
 }
